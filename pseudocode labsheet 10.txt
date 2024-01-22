@@ -1,0 +1,99 @@
+question 1
+eliska vrzalova 
+22/01/2024
+
+main()
+start function
+
+ randomNumbers[10]; 
+
+srand(timenullptr));
+
+//dipslays numbers within the array from index position 0-9
+
+for(int count=0; count < 10; count++)
+	randomNumbers[count]= (rand()%15)+8; //generates random number between 8-22
+	display message " " + randomNumbers[count];
+end for
+
+// dipslays numbers within the array from index position 9-0
+
+for (int count=9; count >= 0; count--)
+	display message " " + randomNumbers[count];
+end for
+
+// displays every second number on the screen i.e. it displays the numbers at index 0, 2, 4, 6, 8
+
+ for(int count = 0; count < 10; count = count + 2)
+	display message " " + randomNumbers[count];
+end for
+
+end function
+---------------------------------------------------------------------------------------------------------------------------
+question 2
+eliska vrzalova 
+22/01/2024
+
+main()
+start function
+
+ evenOdd[9];
+ MAX_NUMS = 9;
+ number = 0;
+evenCount = 0;
+oddCount = 0;
+
+for(int count = 0; count < MAX_NUMS; count++)
+	display message "Enter a number:";
+	input number;
+	evenOdd[count] = number;
+	if(number % 2 == 0)
+		evenCount++;
+	else
+		oddCount++;
+	end if
+end for
+
+//answer
+display message "There are" + evenCount+ "even numbers and" + oddCount+ "odd numbers in the array.";
+
+end function
+-----------------------------------------------------------------------------------------------------------------------------------------
+question 3
+eliska vrzalova 
+22/01/2024
+
+main()
+start function
+
+ arrayCalculations[8];
+ number = 0;
+ sum = 0;
+ largestNum = 0;
+ smallestNum = 11;
+ average = 0;
+MAX_NUMS = 8;
+
+for(int count = 0; count < MAX_NUMS; count++)
+	display message "Enter a number:";
+	input number;
+	arrayCalculations[count] = number;
+	if(number >= 1 and number <= 10)
+		sum = sum + number;
+		if(number > largestNum)
+			largestNum = number;
+		end if
+		if(number < smallestNum)
+			smallestNum = number;
+		end if 
+	else
+		display message"Error: the number must be in the range 1-10"
+	end if
+end for
+ averge = sum / MAX_NUMS;
+ 
+ //answer
+ display message "The sum of the numbers is: " +sum;
+ display message "The largest numbers is:" + largestNum;
+ display message "The smallest number is:" + smallestNum;
+ display message "The average is:" + average;
