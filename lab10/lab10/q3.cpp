@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-int main()
+int main3()
 {
 	int arrayCalculations[8];
 	int number = 0;
@@ -23,8 +23,7 @@ int main()
 	for (int count = 0; count < MAX_NUMS; count++)
 	{
 		std::cout << "Enter a number:" << std::endl;
-		std::cin >> number;
-		arrayCalculations[count] = number;
+		std::cin >> arrayCalculations[count];
 		if (arrayCalculations[count] >= 1 && arrayCalculations[count] <= 10)
 		{
 			sum = sum + arrayCalculations[count];

@@ -20,7 +20,8 @@ int main2()
 	{
 		std::cout << "Enter a number:" << std::endl;
 		std::cin >> oddEven[count];
-		number = oddEven[count]; //assigning numbers in the array to float so it truncates and can be checked as odd or even, it still remains as float in the array, undamaged
+		number = oddEven[count]; //assigning numbers in the array to float so it truncates and can be checked as odd or even,
+		//it still remains as float in the array, undamaged
 		if (number % 2 == 0)
 		{
 			evenCount++;
