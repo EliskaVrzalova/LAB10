@@ -19,7 +19,7 @@ void findLowestHealth();
 void initializeArrays();
 
 
-int main()
+int main6()
 {
 	int sum = 0;
 	float average = 0.0f;

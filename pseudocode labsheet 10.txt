@@ -302,18 +302,18 @@ noOfPlayers = 8;	// the number of active players
 namesArray[MAX_PLAYERS];
 healthArray[MAX_PLAYERS];
 
-findFirstHealthValue(t_healthValue); //string in c++
+findFirstHealthValue(t_healthValue); 
 findAllHealthValue(t_allHealthValues); // string in c++
-findLastName(t_inputName); // string in c++
+findLastName(t_inputName);
 main()
 start function 
 
 healthValue = 0;
 display message "Enter a health value:";
 input healthValue;
-firstOccurence = "";
+firstOccurence = 0;
 firstOccurence = findFirstHealthValue(healthValue);
-display firstOccurence
+display message "Health value" + healthValue + "found at index position" + firstOccurence;
 
 allHealthValues = 0;
 display message "Enter a health value:";
@@ -325,9 +325,9 @@ display allOccurences;
 inputName = "";
 display message "Enter a name:";
 input inputName;
-foundName = "";
-foundName = findLastName(inputName); 
-display foundName;
+foundNameIndex = 0;
+foundNameIndex = findLastName(inputName); 
+display message "Name" + inputName+ "found at index position" +  foundNameIndex;
 
 
  initializeArrays()
@@ -360,20 +360,21 @@ findFirstHealthValue(t_healthValue)
 start function
 
 findFirstOccurrence = false;
-message = "";
+indexPos = 0;
 count = 0;
 for(count = 0; count < MAX_PLAYERS; count++)
 	if(t_healthValue == healthArray[count])
-		findFirstHealthValue = true;
+		findFirstOccurrence = true;
+		indexPos = count;
 		break;
 	end if
 end for 
 if(findFirstOccurrence == true)
-	message = "The health value of" + to_string(t_healthValue) + " was found at index position" + to_string(count);
+	return indexPos;
 else
-	message = "Health value of" +  to_string(t_healthValue) + " was not found in the array";
+	return -1;
 end if
-return message;
+return indexPos;
 end function
 		
 // q8 modification
@@ -392,7 +393,7 @@ for (count; count < MAX_PLAYERS; count++)
 		findAllOccurences = true;
 	end if
 end for
-if(findAllOccurences == true)
+if(findAllOccurences == false)
 	message = "No player with such health value found in the array.";
 end if
 return message;
@@ -405,19 +406,20 @@ findLastName(t_inputName)
 // last occurrence
 start function
 findName = false
-message = "";
+indexPos = 0;;
 count = 0;
 
 for(count= MAX_PLAYERS - 1; count >= 0 ; count--)
 	if(t_inputName == namesArray[count])
 		findName = true;
+		indexPos = count;
 		break;
 	end if
 end for
 if(findName == true)
-	message = "Name" + namesArray[count] + "found in the array at index position"+ to_string(count);
+	indexPos;
 else
-	message = "Name not found in the array."
+	return -1"
 end if
-return message;
+return indexPos;
 end function
