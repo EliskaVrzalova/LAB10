@@ -231,9 +231,9 @@ start function
 // displays the players names and their associated health values to the screen in sequential order within the function.
 healthName = ""
 for(count = 0; count < MAX_PLAYERS; count++)
-	healthName = "The player" + namesArray[count] + "has health of" + to_string(healthArray[count]);
-	display message healthName;
+	healthName = healthName + "The player" + namesArray[count] + "has health of" + to_string(healthArray[count]);
 end for
+display message healthName;
 end function
 
 displayReversePlayers()
@@ -242,9 +242,9 @@ start function
 
 healthNameReverse = "";
 for(count = 7; count >= 0; count--)
-	healthNameReverse = "The player" + namesArray[count] + "has health of" + to_string(healthArray[count]);
-	display message healthName;
+	healthNameReverse = healthName + "The player" + namesArray[count] + "has health of" + to_string(healthArray[count]);
 end for
+display message healthName;
 end function
 
 findHighestHealth()
@@ -253,28 +253,164 @@ start function
 // If there is more than one player with the highest health, output only the last player’s name.
 
 highestHealth = 0;
-highestHealth2 = "";
+message = "";
+count = 0;
+position = 0;
 for(count = 0; count < MAX_PLAYERS; count++)
 	if(highestHealth < healthArray[count])
 		highestHealth = healthArray[count];
+		position = count;
 	end if
-	highestHealth2 = "Player" + namesArray[count] + "health" + to_string(highestHealth);
+	if(highestHealth == healthArray[count])
+		position = count;
+	end if
 end for
+message = "Player" + namesArray[count] + "health" + to_string(highestHealth);
+display message;
 end function
 
 findLowestHealth()
 start function
 // finds the player with the lowest health in the array and outputs the name of the player and their lowest health within the function. 
 //if there is more than one player with the lowest health, output only the first player’s name.
-lowestHealth = 0;
-lowestHealth2 = "";
+lowestHealth = healthArray[0];
+message = "";
 for(count = 0; count < MAX_PLAYERS; count++)
 	if(lowestHealth > healthArray[count])
 		lowestHealth = healthArray[count];
-	end if 
-	if(lowestHealth == healthArray[count])
+	end if
+end for
+for(count = 0; count < MAX_PLAYERS; count++)
+		if(lowestHealth = = healthArray[count])
+			break;
+		end if
+end for
+message = message + " Player " + namesArray[count] + " health " + to_string(lowestHealth);
+display message
+
+end fucntion
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+ question 6 modifs
+eliska vrzalova 
+29/01/2024
+
+global variables - variables declared above outside all functions so every function can see them, knows them, can use the but also potentially corrupt them
+
+// The following variables are GLOBAL variables
+MAX_PLAYERS = 8;	// maximum number of players
+noOfPlayers = 8;	// the number of active players 
+namesArray[MAX_PLAYERS];
+healthArray[MAX_PLAYERS];
+
+findFirstHealthValue(t_healthValue); //string in c++
+findAllHealthValue(t_allHealthValues); // string in c++
+findLastName(t_inputName); // string in c++
+main()
+start function 
+
+healthValue = 0;
+display message "Enter a health value:";
+input healthValue;
+firstOccurence = "";
+firstOccurence = findFirstHealthValue(healthValue);
+display firstOccurence
+
+allHealthValues = 0;
+display message "Enter a health value:";
+input allHealthValues;
+allOccurences = "";
+allOccurences = findAllHealthValue(allHealthValues);
+display allOccurences;
+
+inputName = "";
+display message "Enter a name:";
+input inputName;
+foundName = "";
+foundName = findLastName(inputName); 
+display foundName;
+
+
+ initializeArrays()
+ start function
+// Initialize the two arrays
+
+	namesArray[0] = "Tom";
+	namesArray[1] = "Sam";
+	namesArray[2] = "Ann";
+	namesArray[3] = "Ki";
+	namesArray[4] = "Joe";
+	namesArray[5] = "Ray";
+	namesArray[6] = "Dave";
+	namesArray[7] = "Sue";
+
+	healthArray[0] = 3;
+	healthArray[1] = 6;
+	healthArray[2] = 2;
+	healthArray[3] = 1;
+	healthArray[4] = 4;
+	healthArray[5] = 6;
+	healthArray[6] = 1;
+	healthArray[7] = 6;
+end function
+
+//q7 modification
+findFirstHealthValue(t_healthValue)
+//  accepts a health value argument and then searches for the first occurrence of that particular health value in the array. 
+// If it finds it, it should return its index position within the array. If it is not in the array the function should return -1. 
+start function
+
+findFirstOccurrence = false;
+message = "";
+count = 0;
+for(count = 0; count < MAX_PLAYERS; count++)
+	if(t_healthValue == healthArray[count])
+		findFirstHealthValue = true;
 		break;
 	end if
-	lowestHealth2 = "Player" + namesArray[count] + "health" + to_string(lowesttHealth);
+end for 
+if(findFirstOccurrence == true)
+	message = "The health value of" + to_string(t_healthValue) + " was found at index position" + to_string(healthArray[count];
+else
+	message = "Health value of" +  to_string(t_healthValue) + " was not found in the array";
+end if
+return message;
+end function
+		
+// q8 modification
+findAllHealthValue(t_allHealthValues)
+// accepts a health value argument and then searches for all occurrences of that particular health value in the array
+// If it finds it, it should output to the screen the list of players with that health value.  If it is not in the array the function should output to the screen “No player found with that health value”. 
+start function
+
+findAllOccurences = false;
+message = "";
+count =0;
+
+for (count; count < MAX_PLAYERS; count++)
+	if(t_allHealthValues == healthArray[count])
+		message = message + namesArray[count];
+		findAllOccurences = true;
+	end if
 end for
-end fucntion
+if(findAllOccurences == true)
+	message = "No player with such health value found in the array.";
+end if
+return message;
+end function
+
+// q9 modification
+findLastName(t_inputName)
+// accepts a name value argument and then searches for the last occurrence of that particular name in the array
+// If it finds it, it should return its index position within the array. If it is not in the array the function should return -1. 
+// last occurrence
+start function
+findName = false
+message = "";
+count = 0;
+
+for(count= MAX_PLAYERS-1; count >= 0 ; count--)
+	if(t_inputName == namesArray[count])
+		findName = true;
+		break;
+	end if
+end for
