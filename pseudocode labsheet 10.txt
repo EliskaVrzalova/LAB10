@@ -369,7 +369,7 @@ for(count = 0; count < MAX_PLAYERS; count++)
 	end if
 end for 
 if(findFirstOccurrence == true)
-	message = "The health value of" + to_string(t_healthValue) + " was found at index position" + to_string(healthArray[count];
+	message = "The health value of" + to_string(t_healthValue) + " was found at index position" + to_string(count);
 else
 	message = "Health value of" +  to_string(t_healthValue) + " was not found in the array";
 end if
@@ -408,9 +408,16 @@ findName = false
 message = "";
 count = 0;
 
-for(count= MAX_PLAYERS-1; count >= 0 ; count--)
+for(count= MAX_PLAYERS - 1; count >= 0 ; count--)
 	if(t_inputName == namesArray[count])
 		findName = true;
 		break;
 	end if
 end for
+if(findName == true)
+	message = "Name" + namesArray[count] + "found in the array at index position"+ to_string(count);
+else
+	message = "Name not found in the array."
+end if
+return message;
+end function

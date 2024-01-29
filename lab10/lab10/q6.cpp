@@ -26,7 +26,7 @@ int main()
 	//function calls
 
 	initializeArrays();
-	sum = calculateSum();
+	//sum = calculateSum();
 	std::cout << "The sum of players health in array:" << sum << std::endl;
 	average = calculateAvg();
 	std::cout << "The average of players health in array:" << average << std::endl;
@@ -94,6 +94,7 @@ void displayPlayers()
 		message  = message + " The player " + namesArray[count] + " has health of " + std::to_string(healthArray[count]);
 	}
 	std::cout << message << std::endl;
+	std::cout << std::endl;
 }
 
 void displayReversePlayers()
@@ -102,9 +103,10 @@ void displayReversePlayers()
 	std::string message = "";
 	for (int count = MAX_PLAYERS -1; count >= 0; count--)
 	{
-		message = " The player " + namesArray[count] + " has health of " + std::to_string(healthArray[count]);
+		message = message +  " The player " + namesArray[count] + " has health of " + std::to_string(healthArray[count]);
 	}
 	std::cout << message << std::endl;
+	std::cout << std::endl;
 }
 
 void findHighestHealth()
