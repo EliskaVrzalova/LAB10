@@ -11,7 +11,9 @@ int healthArray1[MAX_PLAYERS1];
 int findFirstHealthValue(int t_healthValue);
 std::string findAllHealthValue(int t_allHealthValues);
 int findLastName(std::string t_inputName);
-
+int changePlayerHealth(std::string t_aName);
+int insertPlayerAtEnd(std::string t_newName, int t_newHealth);
+int deleteLastPlayer();
 
 void initializeArrays1();
 
@@ -43,6 +45,25 @@ int main()
 	int foundNameIndex = 0;
 	foundNameIndex = findLastName(inputName);
 	std::cout << "Name " << inputName << " found at index position " << foundNameIndex << std::endl;
+
+	//q10 
+	std::string aName = "Dave";
+	int indexPos = 0;
+	indexPos = changePlayerHealth(aName);
+	std::cout << "Player" << aName + " with updated value of health found at index position" << indexPos << std::endl;
+
+	// q11
+	std::string newName = "Harry";
+	int newHealth = 5;
+	int newPlayerIndex = 0;
+	newPlayerIndex = insertPlayerAtEnd(newName, newHealth);
+	std::cout<<"New Player " << newName << " with value of health " << newHealth << " found at index position" << newPlayerIndex;
+
+	// q12
+	int deletedPlayerIndex = 0;
+	int deletedPlayerIndex = deleteLastPlayer();
+	std::cout << "Index position of the last player who was deleted is " << deletedPlayerIndex << std::endl;
+
 	system("Pause");
 	return 0;
 }
@@ -96,11 +117,11 @@ int findFirstHealthValue(int t_healthValue)
 	
 }
 
-//q8 modification
+// q8 modification
 std::string findAllHealthValue(int t_allHealthValues)
 // accepts a health value argument and then searches for all occurrences of that particular health value in the array
 // If it finds it, it should output to the screen the list of players with that health value.  If it is not in the array 
-//the function should output to the screen “No player found with that health value”. 
+// the function should output to the screen “No player found with that health value”. 
 {
 
 	bool findAllOccurences = false;
@@ -123,6 +144,7 @@ std::string findAllHealthValue(int t_allHealthValues)
 	return message;
 }
 
+// q9 modification
 int findLastName(std::string t_inputName)
 // accepts a name value argument and then searches for the last occurrence of that particular name in the array
 // If it finds it, it should return its index position within the array. If it is not in the array the function should return -1. 
@@ -150,3 +172,77 @@ int findLastName(std::string t_inputName)
 		return -1;
 	}
 }
+
+// q10 modification
+int changePlayerHealth(std::string t_aName)
+// accepts one string argument t_aName.   t_aName is a player name.  This function should ask the user what the players new health is. 
+// It should then find that player in the array and update their health to the new health inputted by the user.  
+// If there are more than one player with the same name in the array, it should update the last player in the array with that name. 
+// The function should return the index position of the updated player. If the player is not in the array your function should return -1. 
+{
+	bool findName = false;
+	int indexPos = 0;
+	int count = 0;
+	int updatedHealth = 0;
+
+	for (count = MAX_PLAYERS1 - 1; count >= 0; count--)
+	{
+		std::cout << "What is the new value of health?" << std::endl;
+		std::cin >> updatedHealth;
+		if (t_aName == namesArray1[count])
+		{
+			healthArray1[count] = updatedHealth;
+			findName = true;
+			indexPos = count;
+			break;
+		} //  end if
+	} // end for
+	if (findName == true)
+	{
+		return indexPos;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+// q11 modification
+int insertPlayerAtEnd(std::string t_newName, int t_newHealth)
+// This function inserts a new player to the end of the global arrays namesArray and healthArray.
+// The new player name is passed as an argument t_aName and the new player health is passed as an argument t_newHealth to the function. 
+// The function should return the index position of where the new player was inserted within the array. 
+// If the array is full and the new player cannot be inserted into the array, the function should return -1.
+{
+	int indexPos = -1; // if array is full default value -1 is returned
+	if (noOfPlayers1 < MAX_PLAYERS1)// array is not full
+	{
+		namesArray1[noOfPlayers1] = t_newName;
+		healthArray1[noOfPlayers1] = t_newHealth;
+		indexPos = noOfPlayers1; // assign the index position
+		noOfPlayers1++; // update the variable
+	}
+	return indexPos;
+}
+
+// q12 modification
+int deleteLastPlayer()
+// this function deletes/removes the last player in the global arrays namesArray and healthArray. 
+// The function should return the index position of the deleted player within the array. 
+// If the array is empty and there are no players that can be deleted, the function should return -1.
+{
+	int indexPos = 0;
+	if (noOfPlayers1 > 0)// array is not empty
+	{
+		indexPos = noOfPlayers1 - 1;
+		noOfPlayers1--;
+	}
+	else
+	{
+		indexPos = -1; // array is empty;
+	}
+	return indexPos;
+}
+
+
+

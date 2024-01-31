@@ -305,6 +305,10 @@ healthArray[MAX_PLAYERS];
 findFirstHealthValue(t_healthValue); 
 findAllHealthValue(t_allHealthValues); // string in c++
 findLastName(t_inputName);
+changePlayerHealth(t_aName); // int 
+insertPlayerAtEnd (t_newName, t_newHealth); // int 
+deleteLastPlayer(); // int
+
 main()
 start function 
 
@@ -329,6 +333,20 @@ foundNameIndex = 0;
 foundNameIndex = findLastName(inputName); 
 display message "Name" + inputName+ "found at index position" +  foundNameIndex;
 
+aName = "Dave";
+indexPos = 0;
+indexPos = changePlayerHealth(aName);
+display message "Player" + inputName+ " with updated value of health found at index position" +  indexPos;
+
+newName = "Harry";
+newHealth = 5;
+newPlayerIndex = 0;
+newPlayerIndex = insertPlayerAtEnd (newName, newHealth);
+display message "New Player" + newName+ " with value of health" + newHealth + " found at index position" +  newPlayerIndex;
+
+deletedPlayerIndex = 0;
+deletedPlayerIndex = deleteLastPlayer();
+display message "Index position of the last player who was deleted is" + deletedPlayerIndex;
 
  initializeArrays()
  start function
@@ -422,4 +440,71 @@ else
 	return -1"
 end if
 return indexPos;
+end function
+
+//q10 modification
+changePlayerHealth(t_aName)
+// accepts one string argument t_aName.   t_aName is a player name.  This function should ask the user what the players new health is. 
+// It should then find that player in the array and update their health to the new health inputted by the user.  
+// If there are more than one player with the same name in the array, it should update the last player in the array with that name. 
+// The function should return the index position of the updated player. If the player is not in the array your function should return -1. 
+start function
+
+findName = false; 
+indexPos = 0;
+count = 0;
+updatedHealth = 0;
+
+for(count = MAX_PLAYERS - 1; count >= 0; count--)
+	display message "What is the new value of health?";
+	input updatedHealth;
+	if(t_aName == namesArray[count])
+		findName = true;
+		healthArray[cout] = updatedHealth;
+		indexPos = count;
+		break;
+	end if 
+end for
+if(findName == true)
+	return indexPos;
+else
+	return -1;
+end if
+end function
+
+
+// q11 modification
+insertPlayerAtEnd (t_newName, t_newHealth) 
+// This function inserts a new player to the end of the global arrays namesArray and healthArray.
+// The new player name is passed as an argument t_aName and the new player health is passed as an argument t_newHealth to the function. 
+// The function should return the index position of where the new player was inserted within the array. 
+// If the array is full and the new player cannot be inserted into the array, the function should return -1.
+start function 
+ 
+int indexPos = -1; // if array is full default value -1 is returned
+if(noOfPlayers < MAX_PLAYERS) // array is not full
+	namesArray[noOfPlayers] = t_newName;
+	healthArray[noOfPlayers] = t_newHealth;
+	indexPos = noOfPlayers; // assign the index position
+	noOfPlayers++; // update the variable
+end if
+return indexPos;
+end function
+
+
+// q12 modification
+deleteLastPlayer() 
+// this function deletes/removes the last player in the global arrays namesArray and healthArray. 
+// The function should return the index position of the deleted player within the array. 
+// If the array is empty and there are no players that can be deleted, the function should return -1.
+start function
+
+indexPos = 0;
+if(noOfPlayers > 0) // array is not empty
+	pos = noOfPlayers -1;
+	noOfPlayers--;
+else
+	indexPos = -1 // array is empty;
+end if 
+return IndexPos;
 end function
